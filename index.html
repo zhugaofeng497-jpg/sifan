@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我们相爱的时间</title>
+    <title>温馨的小窝</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -18,7 +18,7 @@
         }
         /* 玻璃拟态效果 */
         .glass-card {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.90); /* 稍微调高不透明度 */
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.6);
@@ -57,29 +57,29 @@
         
         <div class="flex flex-col md:flex-row h-full">
             
-            <div class="relative h-72 md:h-auto md:w-1/2 bg-rose-200 group">
+            <div class="relative h-96 md:h-auto md:w-1/2 bg-rose-50 group">
                 <img src="love.jpg" 
                      alt="Couple Photo" 
                      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                      onerror="this.src='https://placehold.co/600x800/pink/white?text=Love+Photo';">
                 
-                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex flex-col justify-end items-center pb-6 md:hidden">
-                    <h1 class="text-rose-100 text-xs tracking-widest mt-1">SINCE 2022.10.16</h1>
-                    <p class="text-3xl text-white handwritten drop-shadow-md">我们开始扯犊子了</p>
+                <div class="absolute inset-0 bg-gradient-to-t from-white/95 via-white/30 to-transparent flex flex-col justify-end items-center pb-8 md:hidden">
+                    <h1 class="text-rose-400 text-xs tracking-[0.2em] font-bold">SINCE 2022.10.16</h1>
+                    <p class="text-4xl text-rose-600 handwritten drop-shadow-sm mb-1">我们开始扯犊子了</p>
                 </div>
             </div>
 
             <div class="p-8 md:p-12 md:w-1/2 flex flex-col justify-center relative">
                 
                 <div class="hidden md:block mb-8 text-center">
-                    <h1 class="text-rose-100 text-xs tracking-widest mt-1">SINCE 2022.10.16</h1>
-                    <p class="text-3xl text-white handwritten drop-shadow-md">我们开始扯犊子了</p>
+                    <h1 class="text-rose-400 text-xs tracking-[0.2em] font-bold">SINCE 2022.10.16</h1>
+                    <p class="text-4xl text-rose-600 handwritten drop-shadow-sm mb-1">我们开始扯犊子了</p>
                 </div>
 
                 <div class="flex justify-center items-center space-x-6 mb-10 text-xl font-bold text-gray-700">
                     <span class="bg-rose-50 px-4 py-1.5 rounded-full text-rose-600 shadow-sm border border-rose-100">nineTwo</span>
                     <i class="fas fa-heart heart-beat text-3xl"></i>
-                    <span class="bg-rose-50 px-4 py-1.5 rounded-full text-rose-600 shadow-sm border border-rose-100">SiFann</span>
+                    <span class="bg-rose-50 px-4 py-1.5 rounded-full text-rose-600 shadow-sm border border-rose-100">Sifann</span>
                 </div>
 
                 <div class="mb-10">
@@ -113,11 +113,11 @@
                 </div>
 
                 <div class="mt-8 text-center">
-                    <button onclick="copyLink()" class="text-gray-400 hover:text-rose-500 transition-colors text-sm flex items-center justify-center gap-2 mx-auto">
-                        <i class="fas fa-link"></i> 复制专属链接
+                    <button onclick="copyLink()" class="text-gray-400 hover:text-rose-500 transition-colors text-sm flex items-center justify-center gap-2 mx-auto cursor-pointer">
+                        <i class="fas fa-link"></i> 撒一下狗粮
                     </button>
                     <div id="toast" class="hidden fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-800/90 text-white px-6 py-2 rounded-full text-sm shadow-xl backdrop-blur-sm transition-all z-50">
-                        链接已复制！❤️
+                        狗粮已揣兜！❤️
                     </div>
                 </div>
             </div>
@@ -125,9 +125,10 @@
     </div>
 
     <script>
-        // 配置日期
+        // 1. 配置日期 (2022-10-16)
         const startDateString = "2022-10-16T00:00:00"; 
         
+        // 2. 计时器逻辑
         function updateTimer() {
             const startDate = new Date(startDateString);
             const now = new Date();
@@ -154,7 +155,7 @@
         setInterval(updateTimer, 1000);
         updateTimer();
 
-        // 复制链接功能
+        // 3. 复制链接功能
         function copyLink() {
             const url = window.location.href;
             navigator.clipboard.writeText(url).then(() => {
@@ -166,7 +167,7 @@
             });
         }
 
-        // 背景爱心动画
+        // 4. 背景爱心动画
         const canvas = document.getElementById('heart-canvas');
         const ctx = canvas.getContext('2d');
         let width, height, hearts = [];
