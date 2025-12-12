@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>温馨的小窝</title>
+    <title>小窝</title>
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22black%22 /><text x=%2250%22 y=%2250%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2255%22 fill=%22yellow%22 text-anchor=%22middle%22 dominant-baseline=%22central%22>91</text></svg>'>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,17 +13,25 @@
         body {
             font-family: 'Noto Sans SC', sans-serif;
             overflow-x: hidden;
+            /* 强制黑色背景 */
+            background-color: #000;
         }
         .handwritten {
             font-family: 'Ma Shan Zheng', cursive;
         }
-        /* 玻璃拟态效果 */
+        /* 玻璃拟态效果 - 暗黑模式调整 */
         .glass-card {
-            background: rgba(255, 255, 255, 0.90); /* 稍微调高不透明度 */
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            background: rgba(30, 30, 30, 0.70); /* 深色半透明背景 */
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* 微弱的白边框 */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            color: #e5e7eb; /* 卡片内默认文字颜色变浅灰 */
+        }
+        /* 倒计时盒子在暗黑模式下的样式 */
+        .time-box-dark {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         /* 心跳动画 */
         @keyframes heartbeat {
@@ -35,9 +44,9 @@
         .heart-beat {
             animation: heartbeat 1.5s infinite;
             display: inline-block;
-            color: #ff4d6d;
+            color: #ff4d6d; /* 爱心保留红色，作为暗黑中的点缀 */
         }
-        /* 背景飘心 */
+        /* 背景飘心 - 调整为低透明度白色/黄色，适应黑背景 */
         #heart-canvas {
             position: fixed;
             top: 0;
@@ -49,74 +58,69 @@
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-pink-100 via-rose-100 to-red-100 min-h-screen flex items-center justify-center text-gray-800 relative p-4">
+<body class="bg-black min-h-screen flex items-center justify-center relative p-4">
 
     <canvas id="heart-canvas"></canvas>
 
-    <div class="w-full max-w-md md:max-w-5xl glass-card rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 hover:shadow-pink-200/50">
+    <div class="w-full max-w-md md:max-w-5xl glass-card rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 hover:shadow-yellow-500/20">
         
         <div class="flex flex-col md:flex-row h-full">
             
-            <div class="relative h-96 md:h-auto md:w-1/2 bg-rose-50 group">
-                <img src="love.jpg" 
-                     alt="Couple Photo" 
-                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                     onerror="this.src='https://placehold.co/600x800/pink/white?text=Love+Photo';">
+            <div class="relative h-96 md:h-auto md:w-1/2 bg-gray-900 group flex items-center justify-center p-10">
+                <img src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22black%22 /><text x=%2250%22 y=%2250%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2255%22 fill=%22yellow%22 text-anchor=%22middle%22 dominant-baseline=%22central%22>91</text></svg>' 
+                     alt="91 Logo" 
+                     class="w-2/3 h-auto object-contain transition-transform duration-700 group-hover:scale-110 drop-shadow-[0_0_15px_rgba(255,255,0,0.5)]">
                 
-                <div class="absolute inset-0 bg-gradient-to-t from-white/95 via-white/30 to-transparent flex flex-col justify-end items-center pb-8 md:hidden">
-                    <h1 class="text-rose-400 text-xs tracking-[0.2em] font-bold">SINCE 2022.10.16</h1>
-                    <p class="text-4xl text-rose-600 handwritten drop-shadow-sm mb-1">我们开始扯犊子了</p>
-                </div>
             </div>
 
             <div class="p-8 md:p-12 md:w-1/2 flex flex-col justify-center relative">
                 
                 <div class="hidden md:block mb-8 text-center">
-                    <h1 class="text-rose-400 text-xs tracking-[0.2em] font-bold">SINCE 2022.10.16</h1>
-                    <p class="text-4xl text-rose-600 handwritten drop-shadow-sm mb-1">我们开始扯犊子了</p>
+                    <h1 class="text-gray-400 text-xs tracking-[0.2em] font-bold">SINCE 2022.10.16</h1>
+                    <p class="text-4xl text-yellow-400 handwritten drop-shadow-sm mb-1">我们开始扯犊子了</p>
                 </div>
 
-                <div class="flex justify-center items-center space-x-6 mb-10 text-xl font-bold text-gray-700">
-                    <span class="bg-rose-50 px-4 py-1.5 rounded-full text-rose-600 shadow-sm border border-rose-100">nineTwo</span>
+                <div class="flex justify-center items-center space-x-6 mb-10 text-xl font-bold text-gray-300">
+                    <span class="bg-gray-800/50 px-4 py-1.5 rounded-full text-yellow-300 shadow-sm border border-yellow-500/20">nineTwo</span>
                     <i class="fas fa-heart heart-beat text-3xl"></i>
-                    <span class="bg-rose-50 px-4 py-1.5 rounded-full text-rose-600 shadow-sm border border-rose-100">Sifann</span>
+                    <span class="bg-gray-800/50 px-4 py-1.5 rounded-full text-yellow-300 shadow-sm border border-yellow-500/20">Sifann</span>
                 </div>
 
                 <div class="mb-10">
                     <p class="text-gray-400 text-center mb-6 text-sm tracking-wide">腻腻歪歪，已经持续了</p>
                     <div class="grid grid-cols-4 gap-3 md:gap-4">
-                        <div class="time-box flex flex-col p-3 bg-white rounded-xl shadow-sm border border-rose-100 text-center hover:bg-rose-50 transition-colors">
-                            <span id="days" class="text-2xl md:text-3xl font-bold text-gray-800 font-mono">0</span>
-                            <span class="text-xs text-rose-400 mt-1">天</span>
+                        <div class="time-box-dark flex flex-col p-3 rounded-xl shadow-sm text-center hover:bg-gray-800 transition-colors">
+                            <span id="days" class="text-2xl md:text-3xl font-bold text-white font-mono">0</span>
+                            <span class="text-xs text-gray-400 mt-1">天</span>
                         </div>
-                        <div class="time-box flex flex-col p-3 bg-white rounded-xl shadow-sm border border-rose-100 text-center hover:bg-rose-50 transition-colors">
-                            <span id="hours" class="text-2xl md:text-3xl font-bold text-gray-800 font-mono">0</span>
-                            <span class="text-xs text-rose-400 mt-1">时</span>
+                        <div class="time-box-dark flex flex-col p-3 rounded-xl shadow-sm text-center hover:bg-gray-800 transition-colors">
+                            <span id="hours" class="text-2xl md:text-3xl font-bold text-white font-mono">0</span>
+                            <span class="text-xs text-gray-400 mt-1">时</span>
                         </div>
-                        <div class="time-box flex flex-col p-3 bg-white rounded-xl shadow-sm border border-rose-100 text-center hover:bg-rose-50 transition-colors">
-                            <span id="minutes" class="text-2xl md:text-3xl font-bold text-gray-800 font-mono">0</span>
-                            <span class="text-xs text-rose-400 mt-1">分</span>
+                        <div class="time-box-dark flex flex-col p-3 rounded-xl shadow-sm text-center hover:bg-gray-800 transition-colors">
+                            <span id="minutes" class="text-2xl md:text-3xl font-bold text-white font-mono">0</span>
+                            <span class="text-xs text-gray-400 mt-1">分</span>
                         </div>
-                        <div class="time-box flex flex-col p-3 bg-white rounded-xl shadow-sm border border-rose-100 text-center hover:bg-rose-50 transition-colors">
-                            <span id="seconds" class="text-2xl md:text-3xl font-bold text-gray-800 font-mono">0</span>
-                            <span class="text-xs text-rose-400 mt-1">秒</span>
+                        <div class="time-box-dark flex flex-col p-3 rounded-xl shadow-sm text-center hover:bg-gray-800 transition-colors">
+                            <span id="seconds" class="text-2xl md:text-3xl font-bold text-white font-mono">0</span>
+                            <span class="text-xs text-gray-400 mt-1">秒</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="relative p-6 bg-rose-50 rounded-2xl border border-rose-100 text-center group hover:bg-rose-100 transition-colors duration-300">
-                    <i class="fas fa-quote-left absolute top-3 left-3 text-rose-200 text-xl group-hover:text-rose-300"></i>
-                    <p class="text-gray-600 handwritten text-2xl leading-relaxed py-2">
+                <div class="relative p-6 bg-gray-800/40 rounded-2xl border border-white/5 text-center group hover:bg-gray-800/60 transition-colors duration-300">
+                    <i class="fas fa-quote-left absolute top-3 left-3 text-gray-600 text-xl group-hover:text-yellow-300 transition-colors"></i>
+                    <p class="text-gray-300 handwritten text-2xl leading-relaxed py-2">
                         将就过吧，还能离咋滴？
                     </p>
-                    <i class="fas fa-quote-right absolute bottom-3 right-3 text-rose-200 text-xl group-hover:text-rose-300"></i>
+                    <i class="fas fa-quote-right absolute bottom-3 right-3 text-gray-600 text-xl group-hover:text-yellow-300 transition-colors"></i>
                 </div>
 
                 <div class="mt-8 text-center">
-                    <button onclick="copyLink()" class="text-gray-400 hover:text-rose-500 transition-colors text-sm flex items-center justify-center gap-2 mx-auto cursor-pointer">
+                    <button onclick="copyLink()" class="text-gray-500 hover:text-yellow-400 transition-colors text-sm flex items-center justify-center gap-2 mx-auto cursor-pointer">
                         <i class="fas fa-link"></i> 撒一下狗粮
                     </button>
-                    <div id="toast" class="hidden fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-800/90 text-white px-6 py-2 rounded-full text-sm shadow-xl backdrop-blur-sm transition-all z-50">
+                    <div id="toast" class="hidden fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-yellow-500 text-black font-bold px-6 py-2 rounded-full text-sm shadow-xl backdrop-blur-sm transition-all z-50">
                         狗粮已揣兜！❤️
                     </div>
                 </div>
@@ -167,7 +171,7 @@
             });
         }
 
-        // 4. 背景爱心动画
+        // 4. 背景爱心动画 (修改了颜色以适应黑背景)
         const canvas = document.getElementById('heart-canvas');
         const ctx = canvas.getContext('2d');
         let width, height, hearts = [];
@@ -187,7 +191,10 @@
                 this.y = Math.random() * height;
                 this.size = Math.random() * 10 + 5;
                 this.speedY = Math.random() * 1 + 0.5;
-                this.color = `rgba(255, ${Math.floor(Math.random() * 50 + 100)}, ${Math.floor(Math.random() * 50 + 100)}, ${Math.random() * 0.5 + 0.1})`;
+                // 修改：颜色改为白色或黄色，低透明度
+                const colors = ['255, 255, 255', '255, 215, 0']; 
+                const colorBase = colors[Math.floor(Math.random() * colors.length)];
+                this.color = `rgba(${colorBase}, ${Math.random() * 0.2 + 0.05})`;
             }
             update() {
                 this.y += this.speedY;
